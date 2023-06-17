@@ -11,6 +11,7 @@ namespace ariel {
 
     private:
         std::vector<int> elements;
+        std::vector<int*> pElements;
 
     public:
 
@@ -19,8 +20,15 @@ namespace ariel {
         }
         
         void addElement(int element) {
+            pElements.clear();
             elements.push_back(element);
             std::sort(elements.begin(), elements.end());
+
+            for(int e : elements){
+                if(isPrime(e)){
+                    pElements.push_back(&e);
+                }
+            }
         }
 
         void removeElement(int element) {
@@ -37,6 +45,20 @@ namespace ariel {
             return elements.size();
         }
 
+        // Function to check if number is prime
+        bool isPrime(int num) const {
+            if (num <= 1) return false;
+            if (num == 2) return true;
+            if (num % 2 == 0) return false;
+            for (int i = 3; i*i <= num; i += 2) {
+                if (num % i == 0) return false;
+            }
+            return true;
+        }
+
+        std::vector<int*> getPrimeE(){
+            return this->pElements;
+        }
 
         class AscendingIterator {
 
@@ -102,7 +124,6 @@ namespace ariel {
             private:
                 MagicalContainer& container; // Pointer to the MagicalContainer
                 int position; // Current position in the container
-                std::vector<int> primes; // Vector storing positions of prime numbers in the container
                 
             public:
                 PrimeIterator() = delete; 
@@ -120,8 +141,9 @@ namespace ariel {
                 bool operator<(const PrimeIterator& other) const ;// Less than comparison  
                 int operator*() const ;// Dereference operator
                 PrimeIterator& operator++() ;
-
+                void addElement(int element);
                 bool isPrime(int num) const;
+
 
                 PrimeIterator begin()const;
                 PrimeIterator end()const;

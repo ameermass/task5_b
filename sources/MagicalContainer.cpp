@@ -4,7 +4,6 @@
 namespace ariel {
 
     // AscendingIterator methods
-
     MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& magicalContainer) 
         : container(magicalContainer), position(0)
     {
@@ -61,31 +60,6 @@ namespace ariel {
     MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end() const {
         return AscendingIterator(container, container.size());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // Implementations for SideCrossIterator
 
@@ -164,28 +138,6 @@ namespace ariel {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Implementations for PrimeIterator
     MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& magicalContainer) : container(magicalContainer), position(0) {}
 
@@ -241,7 +193,10 @@ namespace ariel {
         return PrimeIterator(container, container.elements.size());
     }
 
-    // Function to check if number is prime
+    void MagicalContainer::PrimeIterator::addElement(int element){
+
+    }
+
     bool MagicalContainer::PrimeIterator::isPrime(int num) const {
         if (num <= 1) return false;
         if (num == 2) return true;
@@ -251,6 +206,5 @@ namespace ariel {
         }
         return true;
     }
-
 
 }
